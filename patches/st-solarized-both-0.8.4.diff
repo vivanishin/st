@@ -2,7 +2,7 @@ diff --git a/config.def.h b/config.def.h
 index 6f05dce..f68cd06 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -95,42 +95,54 @@ unsigned int tabspaces = 8;
+@@ -95,44 +95,54 @@ unsigned int tabspaces = 8;
  
  /* Terminal colors (16 first used in escape sequence) */
  static const char *colorname[] = {
@@ -31,6 +31,8 @@ index 6f05dce..f68cd06 100644
 -	/* more colors can be added after 255 to use with DefaultXX */
 -	"#cccccc",
 -	"#555555",
+-	"gray90", /* default foreground colour */
+-	"black", /* default background colour */
 +	/* solarized dark */
 +	"#073642",  /*  0: black    */
 +	"#dc322f",  /*  1: red      */
@@ -75,18 +77,18 @@ index 6f05dce..f68cd06 100644
   * Default colors (colorname index)
   * foreground, background, cursor, reverse cursor
   */
--unsigned int defaultfg = 7;
--unsigned int defaultbg = 0;
--static unsigned int defaultcs = 256;
+-unsigned int defaultfg = 258;
+-unsigned int defaultbg = 259;
+-unsigned int defaultcs = 256;
 -static unsigned int defaultrcs = 257;
 +unsigned int defaultfg = 12;
 +unsigned int defaultbg = 8;
-+static unsigned int defaultcs = 14;
++unsigned int defaultcs = 14;
 +static unsigned int defaultrcs = 15;
  
  /*
   * Default shape of cursor
-@@ -199,6 +211,7 @@ static Shortcut shortcuts[] = {
+@@ -199,6 +209,7 @@ static Shortcut shortcuts[] = {
  	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
  	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
  	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
@@ -94,8 +96,6 @@ index 6f05dce..f68cd06 100644
  };
  
  /*
-diff --git a/st.h b/st.h
-index 3d351b6..03f5206 100644
 --- a/st.h
 +++ b/st.h
 @@ -120,6 +120,7 @@ extern wchar_t *worddelimiters;
@@ -106,8 +106,6 @@ index 3d351b6..03f5206 100644
  extern unsigned int tabspaces;
  extern unsigned int defaultfg;
  extern unsigned int defaultbg;
-diff --git a/x.c b/x.c
-index 210f184..d94c42b 100644
 --- a/x.c
 +++ b/x.c
 @@ -55,6 +55,7 @@ static void clipcopy(const Arg *);
